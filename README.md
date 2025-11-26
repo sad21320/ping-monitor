@@ -33,11 +33,20 @@
 ### Полная сборка проекта из исходников
 
 1. Убедитесь, что вы находитесь в корне проекта `ping-monitor`  
-2. Выполните сборку (автоматически запускаются тесты + JaCoCo + создание fat-jar): ```markdown `gradlew clean build` ``` или в Windows: ```markdown `.\gradlew.bat clean build` ```
+2. Выполните сборку (автоматически запускаются тесты + JaCoCo + создание fat-jar): 
+```markdown 
+`gradlew clean build` 
+``` или в Windows: 
+```markdown 
+`.\gradlew.bat clean build` 
+```
 Должно появиться сообщение **BUILD SUCCESSFUL**
 
 3. Готовый JAR находится здесь:`app\build\libs\ping-monitor.jar`
-4. Запустите его: ```markdown  `java -jar app\build\libs\ping-monitor.jar` ```
+4. Запустите его: 
+```markdown  
+`java -jar app\build\libs\ping-monitor.jar` 
+```
 
 ### Тестирование проекта
 
