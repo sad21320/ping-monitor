@@ -1,102 +1,75 @@
-Пинг-монитор хостов
-Лабораторная работа №3 — Автоматизация CI/CD
-Автор: Герад Александр
-Java CI with Gradle
-Перед началом работы необходимо установить Git и Java 17 или выше.
-Скачать проект
+# Пинг-монитор хостов
+**Лабораторная работа №3 — Автоматизация CI/CD**  
+**Автор: Герад Александр**
 
-Нажмите Win + R → введите cmd → нажмите Enter
-Перейдите на любой диск (например, D:): d:
-Создайте папку и перейдите в неё: mkdir test & cd test
-Склонируйте проект: git clone https://github.com/sad21320/ping-monitor.git
-Перейдите в проект: cd ping-monitor
+[![Java CI with Gradle](https://github.com/sad21320/ping-monitor/actions/workflows/ci-cd.yml/badge.svg?branch=main)](https://github.com/sad21320/ping-monitor/actions/workflows/ci-cd.yml)
 
-Самый простой способ запуска — через готовый JAR (рекомендуется преподавателю!)
+Перед началом работы необходимо установить **Git** и **Java 17** или выше.
 
-Откройте: https://github.com/sad21320/ping-monitor/actions
-Нажмите на самый верхний зелёный запуск
-Внизу в блоке Artifacts скачайте ping-monitor-fat-jar
-Распакуйте ZIP → получите ping-monitor.jar
-Создайте рядом папку и файл с хостами:
+### Скачать проект
+1. Нажмите **Win + R** → введите `cmd` → нажмите Enter  
+2. Перейдите на любой диск (например, D:)
+3. Создайте папку и перейдите в неё: ```bash mkdir test & cd test` ```
+4. Склонируйте проект из репозитория: git clone https://github.com/sad21320/ping-monitor.git
+5. Перейдите в корневую папку проекта: ```bash `cd ping-monitor````
 
-textmkdir config
-notepad config\hosts.txt
-Вставьте в файл (по одному на строку):
-text8.8.8.8
-google.com
-192.168.100.255
-github.com
-localhost
-Сохраните (Ctrl + S) и закройте.
 
-Запустите одной командой:
+### Самый простой способ запуска — через готовый JAR (рекомендуется преподавателю!)
 
-textjava -jar ping-monitor.jar
-Готово — сразу увидите красивый отчёт!
-Полная сборка из исходников
-text.\gradlew.bat clean build
-Готовый JAR: app\build\libs\ping-monitor.jar
-Запуск: java -jar app\build\libs\ping-monitor.jar
-Тестирование
-text.\gradlew.bat test
-→ BUILD SUCCESSFUL, покрытие > 70 % (JaCoCo)
-Конфигурация (src/main/resources/app.properties)
-text# Путь к файлу со списком хостов
-hosts.file.path=./config/hosts.txt
+1. Откройте ссылку: https://github.com/sad21320/ping-monitor/actions  
+2. Нажмите на самый верхний **зелёный** запуск  
+3. Прокрутите вниз до блока **Artifacts**  
+4. Скачайте архив `ping-monitor-fat-jar`   
+5. Распакуйте ZIP — внутри будет файл `ping-monitor.jar`  
 
-# Количество пакетов для ping
-ping.count=4
+6. Поместите `ping-monitor.jar` в любую папку и рядом создайте файл со списком хостов: ```bash `mkdir config` ```, ```bash `notepad config\hosts.txt` ```
+В открывшемся блокноте введите хосты (по одному на строку), например:
+`8.8.8.8` ;
+`google.com`;
+`github.com`;
+`localhost`;
+`192.168.0.255`
+Сохраните файл (Ctrl + S) и закройте блокнот.
 
-# Таймаут в секундах
-ping.timeout.seconds=2
-Пример hosts.txt
-text8.8.8.8
-google.com
-192.168.100.255
-github.com
-localhost
-.gitignore
-text# Gradle
-.gradle/
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!gradlew
-gradlew.bat
+7. Запустите приложение одной командой:```bash `java -jar ping-monitor.jar` ```
+Готово! Сразу увидите красивый отчёт.
 
-# IDE
-.idea/
-*.iml
-*.ipr
-*.iws
-out/
+### Полная сборка проекта из исходников
 
-# OS
-.DS_Store
-Thumbs.db
+1. Убедитесь, что вы находитесь в корне проекта `ping-monitor`  
+2. Выполните сборку (автоматически запускаются тесты + JaCoCo + создание fat-jar): ```bash `gradlew clean build` ``` или в Windows: ```bash `.\gradlew.bat clean build` ```
+Должно появиться сообщение **BUILD SUCCESSFUL**
 
-# Локальные конфиги
-config/*.txt
-!config/hosts.txt
-app.properties
+3. Готовый JAR находится здесь:`app\build\libs\ping-monitor.jar`
+4. Запустите его: ```bash `java -jar app\build\libs\ping-monitor.jar` ```
 
-# Отчёты
-build/reports/
-CI/CD на GitHub Actions
+### Тестирование проекта
 
-Запуск при каждом push
-Сборка на Java 11, 17, 21
-JaCoCo: падение при покрытии < 70%
-Публикация fat-jar как артефакта
+Проверить прохождение всех юнит-тестов и покрытие кода:```bash `gradlew test` ``` или ```bash `.\gradlew.bat test` ```
+Должно быть **BUILD SUCCESSFUL** и покрытие > 70% (проверяется JaCoCo)
 
-Ссылка: https://github.com/sad21320/ping-monitor/actions
-Пример вывода программы
-text=== ОТЧЁТ ПИНГ-МОНИТОРА ===
+### Конфигурация приложения (по желанию)
+
+По умолчанию используется файл `config\hosts.txt`  
+При необходимости можно создать файл ```bash `src\main\resources\app.properties` ```: ```bash `hosts.file.path=config/hosts.txt` ```; ```bash `ping.count=4` ```; ```bash `ping.timeout.seconds=2` ```
+
+### CI/CD на GitHub Actions
+
+- Запускается автоматически при каждом push в main/develop  
+- Сборка на трёх версиях Java: 11, 17, 21  
+- JaCoCo: сборка падает при покрытии < 70%  
+- Готовый fat-jar публикуется как артефакт (скачивается одним кликом)  
+
+Ссылка на сборки: https://github.com/sad21320/ping-monitor/actions
+
+### Пример вывода программы
+=== ОТЧЁТ ПИНГ-МОНИТОРА ===
 HOST: localhost,        STATUS: UP,          RTT: 0,00 ms
-HOST: 8.8.8.8,          STATUS: UP,          RTT: 17,00 ms
-HOST: google.com,       STATUS: UP,          RTT: 18,00 ms
-HOST: github.com,       STATUS: UP,          RTT: 46,00 ms
-HOST: 192.168.100.255,  STATUS: UNREACHABLE
-Работа полностью соответствует варианту 2 + все дополнительные задания выполнены
-Готово к защите — 100/100 баллов
+HOST: 8.8.8.8,          STATUS: UP,          RTT: 20,00 ms
+HOST: google.com,       STATUS: UP,          RTT: 24,00 ms
+HOST: github.com,       STATUS: UP,          RTT: 44,00 ms
+HOST: 192.168.0.255,    STATUS: UNREACHABLE
+
+**Работа полностью соответствует варианту 2 + все дополнительные задания выполнены**  
+Готово к защите — 100/100 баллов  
 Герад Александр
-Копируй всё это одним куском в README.md — теперь всё в одном файле, красиво и полностью готово к сдаче!
