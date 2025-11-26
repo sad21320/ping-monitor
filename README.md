@@ -11,7 +11,10 @@
 2. Перейдите на любой диск (например, D:)
 3. Создайте папку и перейдите в неё: mkdir test & cd test`
 4. Склонируйте проект из репозитория: git clone https://github.com/sad21320/ping-monitor.git
-5. Перейдите в корневую папку проекта: ```markdown `cd ping-monitor` ```
+5. Перейдите в корневую папку проекта: 
+```markdown 
+`cd ping-monitor`
+```
 
 
 ### Самый простой способ запуска — через готовый JAR (рекомендуется преподавателю!)
@@ -22,12 +25,21 @@
 4. Скачайте архив `ping-monitor-fat-jar`  
 5. Распакуйте ZIP — внутри будет файл `ping-monitor.jar`  
 
-6. Поместите `ping-monitor.jar` в любую папку и рядом создайте файл со списком хостов: ```markdown `mkdir config` ```, ```markdown `notepad config\hosts.txt` ```
+6. Поместите `ping-monitor.jar` в любую папку и рядом создайте файл со списком хостов: 
+```markdown
+`mkdir config`
+```, 
+```markdown
+`notepad config\hosts.txt`
+```
 В открывшемся блокноте введите хосты (по одному на строку), например:
 `8.8.8.8` `google.com` `github.com` `localhost` `192.168.0.255`
 Сохраните файл (Ctrl + S) и закройте блокнот.
 
-7. Запустите приложение одной командой: ```markdown `java -jar ping-monitor.jar` ```
+7. Запустите приложение одной командой: 
+```markdown
+`java -jar ping-monitor.jar`
+```
 Готово! Сразу увидите красивый отчёт.
 
 ### Полная сборка проекта из исходников
@@ -36,7 +48,8 @@
 2. Выполните сборку (автоматически запускаются тесты + JaCoCo + создание fat-jar): 
 ```markdown 
 `gradlew clean build` 
-``` или в Windows: 
+``` 
+или в Windows: 
 ```markdown 
 `.\gradlew.bat clean build` 
 ```
@@ -50,13 +63,25 @@
 
 ### Тестирование проекта
 
-Проверить прохождение всех юнит-тестов и покрытие кода:```markdown `gradlew test` ``` или ```markdown `.\gradlew.bat test` ```
+Проверить прохождение всех юнит-тестов и покрытие кода:
+```markdown
+`gradlew test`
+``` 
+или 
+```markdown
+`.\gradlew.bat test`
+```
 Должно быть **BUILD SUCCESSFUL** и покрытие > 70% (проверяется JaCoCo)
 
 ### Конфигурация приложения (по желанию)
 
 По умолчанию используется файл `config\hosts.txt`  
-При необходимости можно создать файл `src\main\resources\app.properties`: ```markdown `hosts.file.path=config/hosts.txt` `ping.count=4` `ping.timeout.seconds=2` ```
+При необходимости можно создать файл `src\main\resources\app.properties`: 
+```markdown
+`hosts.file.path=config/hosts.txt`
+`ping.count=4`
+`ping.timeout.seconds=2`
+```
 
 ### CI/CD на GitHub Actions
 
