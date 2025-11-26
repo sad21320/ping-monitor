@@ -22,9 +22,7 @@
 4. Скачайте архив `ping-monitor-fat-jar`  
 5. Распакуйте ZIP — внутри будет файл `ping-monitor.jar`  
 
-6. Поместите `ping-monitor.jar` в любую папку и рядом создайте файл со списком хостов: ```bash
-`mkdir config`
-```, `notepad config\hosts.txt`
+6. Поместите `ping-monitor.jar` в любую папку и рядом создайте файл со списком хостов: `mkdir config`, `notepad config\hosts.txt`
 В открывшемся блокноте введите хосты (по одному на строку), например:
 `8.8.8.8` `google.com` `github.com` `localhost` `192.168.0.255`
 Сохраните файл (Ctrl + S) и закройте блокнот.
@@ -71,3 +69,30 @@ HOST: 192.168.0.255,    STATUS: UNREACHABLE
 **Работа полностью соответствует варианту 2 + все дополнительные задания выполнены**  
 Готово к защите — 100/100 баллов  
 Герад Александр
+
+
+
+
+
+
+
+→ После этого на GitHub рядом с каждым блоком появится кнопка **Copy** в правом верхнем углу блока!
+
+### Полный финальный README.md с кнопками Copy (копируй всё целиком):
+
+```markdown
+# Пинг-монитор хостов
+**Лабораторная работа №3 — Автоматизация CI/CD**  
+**Автор: Герад Александр**
+
+[![Java CI with Gradle](https://github.com/sad21320/ping-monitor/actions/workflows/ci-cd.yml/badge.svg?branch=main)](https://github.com/sad21320/ping-monitor/actions/workflows/ci-cd.yml)
+
+Перед началом работы необходимо установить **Git** и **Java 17** или выше.
+
+### Скачать проект
+1. Нажмите **Win + R** → введите `cmd` → нажмите Enter  
+2. Перейдите на любой диск (например, D:): `d:`  
+3. Создайте папку: `mkdir test & cd test`  
+4. Склонируйте проект:  
+```bash
+git clone https://github.com/sad21320/ping-monitor.git
