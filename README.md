@@ -43,6 +43,43 @@ localhost
 ```
 Сохраните файл (Ctrl + S) и закройте блокнот.
 
+### Настройка .gitignore (обязательно!)
+
+Файл `.gitignore` лежит в корне проекта и должен содержать следующие правила:
+
+```gitignore
+# Gradle — не коммитим кэши и сборку
+.gradle/
+build/
+app/build/
+
+# Исключения: сам wrapper должен быть в репозитории
+!gradle/wrapper/gradle-wrapper.jar
+!gradlew
+!gradlew.bat
+
+# IDE (IntelliJ IDEA, Eclipse и т.д.)
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Файлы ОС
+.DS_Store
+Thumbs.db
+
+# Локальные конфиги — НЕ коммитим личные файлы
+config/*.txt          # игнорируем любые .txt в папке config
+!config/hosts.txt     # кроме примера hosts.txt — его специально оставляем для всех
+
+# Если не хочешь коммитить свой app.properties (он уже есть в src/main/resources)
+app.properties
+
+# Отчёты JaCoCo и тестов
+build/reports/
+```
+
 7. Запустите приложение одной командой: 
 ```markdown
 java -jar ping-monitor.jar
