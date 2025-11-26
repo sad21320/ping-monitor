@@ -13,7 +13,7 @@
 4. Склонируйте проект из репозитория: git clone https://github.com/sad21320/ping-monitor.git
 5. Перейдите в корневую папку проекта: 
 ```markdown 
-`cd ping-monitor`
+cd ping-monitor
 ```
 
 
@@ -27,10 +27,10 @@
 
 6. Поместите `ping-monitor.jar` в любую папку и рядом создайте файл со списком хостов: 
 ```markdown
-`mkdir config`
+mkdir config
 ```
 ```markdown
-`notepad config\hosts.txt`
+notepad config\hosts.txt
 ```
 
 В открывшемся блокноте введите хосты (по одному на строку), например:
@@ -39,7 +39,7 @@
 
 7. Запустите приложение одной командой: 
 ```markdown
-`java -jar ping-monitor.jar`
+java -jar ping-monitor.jar
 ```
 Готово! Сразу увидите красивый отчёт.
 
@@ -48,29 +48,29 @@
 1. Убедитесь, что вы находитесь в корне проекта `ping-monitor`  
 2. Выполните сборку (автоматически запускаются тесты + JaCoCo + создание fat-jar): 
 ```markdown 
-`gradlew clean build` 
+gradlew clean build 
 ``` 
 или в Windows: 
 ```markdown 
-`.\gradlew.bat clean build` 
+.\gradlew.bat clean build
 ```
 Должно появиться сообщение **BUILD SUCCESSFUL**
 
 3. Готовый JAR находится здесь:`app\build\libs\ping-monitor.jar`
 4. Запустите его: 
 ```markdown  
-`java -jar app\build\libs\ping-monitor.jar` 
+java -jar app\build\libs\ping-monitor.jar
 ```
 
 ### Тестирование проекта
 
 Проверить прохождение всех юнит-тестов и покрытие кода:
 ```markdown
-`gradlew test`
+gradlew test
 ``` 
 или 
 ```markdown
-`.\gradlew.bat test`
+.\gradlew.bat test
 ```
 Должно быть **BUILD SUCCESSFUL** и покрытие > 70% (проверяется JaCoCo)
 
@@ -79,9 +79,9 @@
 По умолчанию используется файл `config\hosts.txt`  
 При необходимости можно создать файл `src\main\resources\app.properties`: 
 ```markdown
-`hosts.file.path=config/hosts.txt`
-`ping.count=4`
-`ping.timeout.seconds=2`
+hosts.file.path=config/hosts.txt
+ping.count=4
+ping.timeout.seconds=2
 ```
 
 ### CI/CD на GitHub Actions
