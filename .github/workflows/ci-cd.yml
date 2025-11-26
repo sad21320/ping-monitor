@@ -1,0 +1,62 @@
+# .github/workflows/ci-cd.yml
+name: CI/CD Ping Monitor
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    name: Build on JDK ${{ matrix.java }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java: [ 11, 17, 21 ]
+
+    steps:
+      - name: Checkout код
+        uses: actions/checkout@v4
+
+      - name: Установка JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Права на gradlew
+        run: chmod +x gradlew
+
+      - name: Сборка + тесты + JaCoCo
+        run: ./gradlew clean build jacocoTestReport jacocoTestCoverageVerification --info
+
+      - name: Загрузка отчёта покрытия (HTML)
+        if: matrix.java == 17
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: app/build/reports/jacoco/test/html/
+
+      - name: Загрузка fat-jar
+        if: matrix.java == 17
+        uses: actions/upload-artifact@v4
+        with:
+          name: ping-monitor-jar
+          path: app/build/libs/ping-monitor-${{ github.sha }}.jar
+          if-no-files-found: error
+
+      - name: Загрузка fat-jar (с именем без SHA)
+        if: matrix.java == 17
+        run: |
+          cp app/build/libs/*.jar ping-monitor.jar
+          echo "JAR_FILE=ping-monitor.jar >> $GITHUB_ENV
+
+      - name: Загрузка готового JAR
+        if: matrix.java == 17
+        uses: actions/upload-artifact@v4
+        with:
+          name: ping-monitor-latest
+          path: ping-monitor.jar

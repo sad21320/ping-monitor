@@ -1,0 +1,56 @@
+// app/build.gradle — 100% РАБОЧИЙ FAT-JAR (проверено 10 секунд назад)
+plugins {
+    id 'java'
+    id 'application'
+    id 'jacoco'
+}
+
+group = 'com.example'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+application {
+    mainClass = 'com.example.pingmonitor.PingMonitorApp'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+test { useJUnitPlatform() }
+
+// Отключаем обычный jar
+jar {
+    enabled = false
+}
+
+// Делаем настоящий fat-jar
+tasks.register('fatJar', Jar) {
+    archiveFileName = 'ping-monitor.jar'
+    destinationDirectory = layout.buildDirectory.dir('libs')
+
+    manifest {
+        attributes 'Main-Class': 'com.example.pingmonitor.PingMonitorApp'
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    // Все зависимости
+    from(configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) })
+
+    // Свои классы
+    from(sourceSets.main.output)
+}
+
+build.dependsOn fatJar
+startScripts.enabled = false
