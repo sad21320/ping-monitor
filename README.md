@@ -5,6 +5,7 @@
 [![Java CI with Gradle](https://github.com/sad21320/ping-monitor/actions/workflows/ci-cd.yml/badge.svg?branch=main)](https://github.com/sad21320/ping-monitor/actions/workflows/ci-cd.yml)
 
 Перед началом работы необходимо установить **Git** и **Java 17** или выше.
+Проверить версии установленных продуктов можно с помощью команд `java --version` и `git --version`
 
 ### Скачать проект
 1. Нажмите **Win + R** → введите `cmd` → нажмите Enter  
