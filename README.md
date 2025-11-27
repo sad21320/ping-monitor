@@ -40,7 +40,7 @@ cd ping-monitor
 5. Распакуйте ZIP в папку `test/ping-monitor` и перейдите в нее — внутри будет файл `ping-monitor.jar`  
 
 
-6. Поместите `ping-monitor.jar` в папку `ping-monitor` и отредактируйте файл со списком хостов: 
+6. Отредактируйте файл со списком хостов: 
 ```markdown
 cd config
 ```
@@ -54,7 +54,7 @@ echo 192.168.0.255 >> hosts.txt
 
 ### Настройка .gitignore (обязательно!)
 
-Файл `.gitignore` лежит в корне проекта и должен содержать следующие правила:
+Файл `.gitignore` лежит в корне проекта и нужно изменить содержимое на эти правила:
 
 ```gitignore
 # Gradle — не коммитим кэши и сборку
@@ -93,25 +93,37 @@ build/reports/
 
 По умолчанию используется файл `config\hosts.txt`  
 Необходимо создать файл `app.properties` в папке `resourses`.
-Для этого перейдем по пути 
+Для этого выходим из папки `config` с помощью команды
+```markdown
+cd ..
+```
+и перейдем по пути 
 ```markdown
 cd app\src\main
 ``` 
 и создадим файл `app.properties` в папке `app/src/main/resources` с помощью команды  
 ```markdown
-mkdir app/src/main/resources
-``` 
-и добавим такой текст : 
+mkdir resources
+```
+. После переходим в папку `resourses` с помощью команды
 ```markdown
-echo hosts.file.path=config/hosts.txt > app/src/main/resources/app.properties
-echo ping.count=4 >> app/src/main/resources/app.properties
-echo ping.timeout.seconds=2 >> app/src/main/resources/app.properties
+cd resources
+```
+(при условии, что вы находитесь в папке `main` по пути `ping-monitor\app\src\main`) и добавим такой текст : 
+```markdown
+echo hosts.file.path=config/hosts.txt>app.properties
+echo ping.count=4>>app.properties
+echo ping.timeout.seconds=2>>app.properties
 ```
 
 
 ### Полная сборка проекта из исходников
 
-1. Убедитесь, что вы находитесь в корне проекта `ping-monitor`  
+1. Убедитесь, что вы находитесь в корне проекта `ping-monitor`. Выходим из папки `resources` с помощью команды 
+```markdown
+cd ..
+``` 
+до того момента, пока мы не окажемся в папке `ping-monitor`
 2. Выполните сборку (автоматически запускаются тесты + JaCoCo + создание fat-jar): 
 ```markdown 
 gradle clean build 
@@ -129,14 +141,8 @@ java -jar app\build\libs\ping-monitor.jar
 
 Проверить прохождение всех юнит-тестов и покрытие кода:
 ```markdown
-gradlew test
+gradle test
 ``` 
-или 
-```markdown
-.\gradlew.bat test
-```
-Должно быть **BUILD SUCCESSFUL** и покрытие > 70% (проверяется JaCoCo)
-
 
 ### CI/CD на GitHub Actions
 
