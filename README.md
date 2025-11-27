@@ -7,6 +7,10 @@
 Перед началом работы необходимо установить **Git** и **Java 17** или выше.
 Проверить версии установленных продуктов можно с помощью команд `java --version` и `git --version`
 
+#Требования
+1. Java 17 или выше
+2. Git (для скачивания проекта)
+
 ### Скачать проект
 1. Нажмите **Win + R** → введите `cmd` → нажмите Enter  
 2. Перейдите на любой диск 
@@ -34,20 +38,16 @@ cd ping-monitor
 
 6. Поместите `ping-monitor.jar` в любую папку и рядом создайте файл со списком хостов: 
 ```markdown
-mkdir config
+cd config
 ```
 ```markdown
-notepad config\hosts.txt
+echo 8.8.8.8 > config\hosts.txt
+echo google.com >> config\hosts.txt
+echo github.com >> config\hosts.txt
+echo localhost >> config\hosts.txt
+echo 192.168.0.255 >> config\hosts.txt
 ```
 
-В открывшемся блокноте введите хосты (по одному на строку), например:
-```markdown
-8.8.8.8
-google.com
-github.com
-localhost
-192.168.0.255
-```
 Сохраните файл (Ctrl + S) и закройте блокнот.
 
 ### Настройка .gitignore (обязательно!)
@@ -90,11 +90,11 @@ build/reports/
 ### Конфигурация приложения (по желанию)
 
 По умолчанию используется файл `config\hosts.txt`  
-При необходимости можно создать файл `src\main\resources\app.properties`: 
+При необходимости создать файл `mkdir -p app/src/main/resources`: 
 ```markdown
-hosts.file.path=config/hosts.txt
-ping.count=4
-ping.timeout.seconds=2
+echo hosts.file.path=config/hosts.txt > app/src/main/resources/app.properties
+echo ping.count=4 >> app/src/main/resources/app.properties
+echo ping.timeout.seconds=2 >> app/src/main/resources/app.properties
 ```
 
 
@@ -103,12 +103,9 @@ ping.timeout.seconds=2
 1. Убедитесь, что вы находитесь в корне проекта `ping-monitor`  
 2. Выполните сборку (автоматически запускаются тесты + JaCoCo + создание fat-jar): 
 ```markdown 
-gradlew clean build 
+gradle clean build 
 ``` 
-или в Windows: 
-```markdown 
-.\gradlew.bat clean build
-```
+
 Должно появиться сообщение **BUILD SUCCESSFUL**
 
 3. Готовый JAR находится здесь:`app\build\libs\ping-monitor.jar`
