@@ -21,7 +21,10 @@ mkdir test
 ```markdown 
 cd test
 ```
-4. Склонируйте проект из репозитория: git clone https://github.com/sad21320/ping-monitor.git
+4. Склонируйте проект из репозитория: 
+```markdown
+git clone https://github.com/sad21320/ping-monitor.git
+```
 5. Перейдите в корневую папку проекта: 
 ```markdown 
 cd ping-monitor
@@ -34,18 +37,19 @@ cd ping-monitor
 2. Нажмите на самый верхний **зелёный** запуск  
 3. Прокрутите вниз до блока **Artifacts**  
 4. Скачайте архив `ping-monitor-fat-jar`  
-5. Распакуйте ZIP в любую удобную папку и перейдите в нее — внутри будет файл `ping-monitor.jar`  
+5. Распакуйте ZIP в папку `test/ping-monitor` и перейдите в нее — внутри будет файл `ping-monitor.jar`  
 
-6. Поместите `ping-monitor.jar` в любую папку и рядом создайте файл со списком хостов: 
+
+6. Поместите `ping-monitor.jar` в папку `ping-monitor` и отредактируйте файл со списком хостов: 
 ```markdown
 cd config
 ```
 ```markdown
-echo 8.8.8.8 > config\hosts.txt
-echo google.com >> config\hosts.txt
-echo github.com >> config\hosts.txt
-echo localhost >> config\hosts.txt
-echo 192.168.0.255 >> config\hosts.txt
+echo 8.8.8.8 > hosts.txt
+echo google.com >> hosts.txt
+echo github.com >> hosts.txt
+echo localhost >> hosts.txt
+echo 192.168.0.255 >> hosts.txt
 ```
 
 Сохраните файл (Ctrl + S) и закройте блокнот.
@@ -90,7 +94,14 @@ build/reports/
 ### Конфигурация приложения (по желанию)
 
 По умолчанию используется файл `config\hosts.txt`  
-При необходимости создать файл `mkdir -p app/src/main/resources`: 
+Необходимо создать файл `app.properties` в папке `resourses`.
+Для этого перейдем по пути 
+```markdown
+cd app\src\main
+``` и создадим файл `app.properties` в папке `app/src/main/resources` с помощью команды  
+```markdown
+mkdir app/src/main/resources
+``` и добавим такой текст : 
 ```markdown
 echo hosts.file.path=config/hosts.txt > app/src/main/resources/app.properties
 echo ping.count=4 >> app/src/main/resources/app.properties
