@@ -87,11 +87,16 @@ app.properties
 build/reports/
 ```
 
-7. Запустите приложение одной командой: 
+### Конфигурация приложения (по желанию)
+
+По умолчанию используется файл `config\hosts.txt`  
+При необходимости можно создать файл `src\main\resources\app.properties`: 
 ```markdown
-java -jar ping-monitor.jar
+hosts.file.path=config/hosts.txt
+ping.count=4
+ping.timeout.seconds=2
 ```
-Готово! Сразу увидите красивый отчёт.
+
 
 ### Полная сборка проекта из исходников
 
@@ -124,15 +129,6 @@ gradlew test
 ```
 Должно быть **BUILD SUCCESSFUL** и покрытие > 70% (проверяется JaCoCo)
 
-### Конфигурация приложения (по желанию)
-
-По умолчанию используется файл `config\hosts.txt`  
-При необходимости можно создать файл `src\main\resources\app.properties`: 
-```markdown
-hosts.file.path=config/hosts.txt
-ping.count=4
-ping.timeout.seconds=2
-```
 
 ### CI/CD на GitHub Actions
 
