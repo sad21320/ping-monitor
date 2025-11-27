@@ -96,10 +96,12 @@ build/reports/
 Для этого перейдем по пути 
 ```markdown
 cd app\src\main
-``` и создадим файл `app.properties` в папке `app/src/main/resources` с помощью команды  
+``` 
+и создадим файл `app.properties` в папке `app/src/main/resources` с помощью команды  
 ```markdown
 mkdir app/src/main/resources
-``` и добавим такой текст : 
+``` 
+и добавим такой текст : 
 ```markdown
 echo hosts.file.path=config/hosts.txt > app/src/main/resources/app.properties
 echo ping.count=4 >> app/src/main/resources/app.properties
